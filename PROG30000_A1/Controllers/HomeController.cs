@@ -28,5 +28,10 @@ namespace PROG30000_A1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult RequestForm()
+        {
+            return View();
+        }
     }
 }
