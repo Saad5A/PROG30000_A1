@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PROG30000_A1.Models.Equipment>
+
+<h2>All Equipment</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Equipment Type</th>
+            <th>Description</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Type</td>
+                <td>@item.Description</td>
+                <td>
+                    @if (item.IsAvailable)
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Unavailable</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

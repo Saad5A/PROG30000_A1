@@ -8,6 +8,7 @@
         Microphone,
         Speaker,
         Tablet,
+        Other
 
     }
 }

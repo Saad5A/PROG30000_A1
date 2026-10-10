@@ -4,13 +4,16 @@ namespace PROG30000_A1.Controllers
 {
     public class RequestController : Controller
     {
-        public IActionResult RequestForm()    //Url  GET : /student/CreateStudent
+
+        [HttpGet ("RequestForm")]
+        public IActionResult RequestForm()   
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult RequestForm(EquipmentRequest request)  //URL: 
+        [HttpPost ("RequestForm")]
+
+        public IActionResult RequestForm(EquipmentRequest request) 
         {
             if (ModelState.IsValid)
             {
@@ -24,6 +27,7 @@ namespace PROG30000_A1.Controllers
 
         }
 
+        [Route("Confirmation")]
         public IActionResult Confirmation()
         {
             return View();
