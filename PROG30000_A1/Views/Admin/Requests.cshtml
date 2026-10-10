@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PROG30000_A1.Models.EquipmentRequest>
+
+@{
+    ViewData["Title"] = "Admin Requests";
+}
+
+<h2>Equipment Borrowing Requests</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Request ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Equipment Type</th>
+            <th>Duration (Days)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.Name</td>
+                <td>@request.UserType</td>
+                <td>@request.EquipmentType</td>
+                <td>@request.Duration</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm">
+                        Accept
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm">
+                        Deny
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
