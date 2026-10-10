@@ -1,63 +1,140 @@
 ﻿@model EquipmentRequest
 @using PROG30000_A1.Models
 
-<h2>Request Form</h2>
+@{
+    ViewData["Title"] = "Equipment Request Form";
+}
 
-	<form method="post" asp-action="RequestForm" asp-controller="Request">
+<div class="container-fluid py-3">
 
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-dark text-white px-4 py-3">
+            <h2 class="mb-1">Equipment Request Form</h2>
+            <p class="mb-0 text-white-50">
+                Complete the information below to request IT equipment.
+            </p>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="post"
+                  asp-action="RequestForm"
+                  asp-controller="Request">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger"></div>
+
+                <!-- PERSONAL INFORMATION -->
+                <h5 class="mb-3">Personal Information</h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email"
+                               class="form-control"
+                               placeholder="abc@mail.com" />
+                        <span asp-validation-for="Email"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="PhoneNumber"
+                               class="form-label">Phone Number</label>
+                        <input asp-for="PhoneNumber"
+                               type="tel"
+                               class="form-control"
+                               placeholder="XXX-XXX-XXXX" />
+                        <span asp-validation-for="PhoneNumber"
+                              class="text-danger small"></span>
+                    </div>
+
+                </div>
+
+                <!-- EQUIPMENT INFORMATION -->
+                <h5 class="mb-3 border-top pt-3">
+                    Equipment Information
+                </h5>
+
+                <div class="row g-3 mb-3">
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="UserType"
+                               class="form-label">Role</label>
+                        <select asp-for="UserType" class="form-select">
+                            <option value="">Select User Type</option>
+                            <option value="Student">Student</option>
+                            <option value="Professor">Professor</option>
+                        </select>
+                        <span asp-validation-for="UserType"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="EquipmentType"
+                               class="form-label">Equipment Type</label>
+
+                        <select asp-for="EquipmentType"
+                                asp-items="Html.GetEnumSelectList<EquipmentType>()"
+                                class="form-select">
+                            <option value="">
+                                Select Equipment Type
+                            </option>
+                        </select>
+
+                        <span asp-validation-for="EquipmentType"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <label asp-for="Duration"
+                               class="form-label">Duration (Days)</label>
+                        <input asp-for="Duration"
+                               class="form-control"
+                               placeholder="Number of days"
+                               min="1" />
+                        <span asp-validation-for="Duration"
+                              class="text-danger small"></span>
+                    </div>
+
+                </div>
+
+                <!-- REQUEST DETAILS -->
+                <div class="mb-3">
+                    <label asp-for="RequestDetails"
+                           class="form-label">Request Information</label>
+
+                    <textarea asp-for="RequestDetails"
+                              class="form-control"
+                              rows="3"
+                              placeholder="Briefly explain why you need to borrow this equipment"></textarea>
+
+                    <span asp-validation-for="RequestDetails"
+                          class="text-danger small"></span>
+                </div>
+
+                <!-- SUBMIT -->
+                <div class="text-end mt-3">
+                    <button type="submit"
+                            class="btn btn-primary px-5">
+                        Submit Equipment Request
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" placeholder="abc@mail.com" />
-		<span asp-validation-for="Email" class="text-danger"></span>
-	</div>
-
-    <div class="form-group">
-        <label asp-for="PhoneNumber">Phone</label>
-        <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="XXX-XXX-XXXX" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-
-
-    <div class="form-group">
-        <label asp-for="UserType">Role</label>
-        <select asp-for="UserType" class="form-control">
-            <option value="">Select User Type</option>
-            <option value="Student">Student</option>
-            <option value="Professor">Professor</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="EquipmentType">Equipment Type</label>
-        <select asp-for="EquipmentType" asp-items="Html.GetEnumSelectList<EquipmentType>()" class="form-control"> 
-            <option value="">Please select the device type</option>
-        </select>
-
-        <span asp-validation-for="EquipmentType"
-              class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="RequestDetails">Request Information</label>
-        <input asp-for="RequestDetails" class="form-control" placeholder="Short purpose of borrowing" />
-        <span asp-validation-for="RequestDetails" class="text-danger"></span>
-    </div>
-
-
-
-    <div class="form-group">
-        <label asp-for="Duration"></label>
-		<input asp-for="Duration" class="form-control" placeholder="(Number of Days)"/>
-		<span asp-validation-for="Duration" class="text-danger"></span>
-	</div>    
-    <button type="submit" class="btn btn-primary">Request Item</button>
-
-
-
-    </form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,3 +1,46 @@
-﻿
-<h2> Thank You</h2>
-<h3> IT Department will in touch soon</h3>
+﻿@{
+    ViewData["Title"] = "Request Confirmation";
+}
+
+<div class="d-flex justify-content-center align-items-center"
+     style="min-height: 70vh;">
+
+    <div class="card shadow border-0 text-center"
+         style="max-width: 650px; width: 100%;">
+
+        <div class="card-body p-5">
+
+            <!-- Success Icon -->
+            <div class="mb-4">
+                <div class="bg-success text-white rounded-circle
+                            d-inline-flex align-items-center
+                            justify-content-center"
+                     style="width: 80px; height: 80px; font-size: 40px;">
+                    &#10003;
+                </div>
+            </div>
+
+            <!-- Confirmation Message -->
+            <h1 class="fw-bold mb-3">Thank You!</h1>
+
+            <h4 class="text-success mb-3">
+                Your Request Has Been Submitted Successfully
+            </h4>
+
+            <p class="text-muted fs-5 mb-4">
+                Your equipment borrowing request has been received.
+                The IT Department will be in touch with you soon.
+            </p>
+
+            <hr class="my-4" />
+
+            <!-- Return Home Button -->
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-primary px-5 py-2">
+                Return to Home
+            </a>
+
+        </div>
+    </div>
+</div>
